@@ -19,7 +19,7 @@
               <% end %>
             </td>
             <td><b><%= uah(item.total_price) %></b></td>
-            <td><%= button_to "✕", cart_item_path(item), method: :delete, class: "link-btn danger", title: "Видалити" %></td>
+            <td><%= button_to "Видалити", cart_item_path(item), method: :delete, class: "link-btn danger", title: "Видалити" %></td>
           </tr>
         <% end %>
       </tbody>

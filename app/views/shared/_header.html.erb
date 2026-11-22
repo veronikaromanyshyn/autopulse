@@ -1,7 +1,7 @@
 <header class="site-header">
   <div class="topbar">
     <div class="container topbar-inner">
-      <span>📞 0 800 123 456 · Пн–Сб 9:00–19:00</span>
+      <span>0 800 123 456 · Пн–Сб 9:00–19:00</span>
       <span>Безкоштовна доставка від 2 000 грн</span>
     </div>
   </div>
@@ -14,14 +14,14 @@
     <nav class="user-nav">
       <% if logged_in? %>
         <% if admin? %><%= link_to "Адмінка", admin_root_path %><% end %>
-        <%= link_to "👤 #{current_user.name}", profile_path %>
+        <%= link_to "#{current_user.name}", profile_path %>
         <%= button_to "Вийти", logout_path, method: :delete, class: "link-btn" %>
       <% else %>
         <%= link_to "Увійти", login_path %>
         <%= link_to "Реєстрація", signup_path, class: "btn btn-sm" %>
       <% end %>
       <%= link_to cart_path, class: "cart-link" do %>
-        🛒 Кошик <span class="cart-count"><%= current_cart.total_items %></span>
+        Кошик <span class="cart-count"><%= current_cart.total_items %></span>
       <% end %>
     </nav>
   </div>

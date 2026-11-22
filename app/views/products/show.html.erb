@@ -10,7 +10,7 @@
       <tr><th>Артикул</th><td><%= @product.sku %></td></tr>
       <tr><th>Категорія</th><td><%= @product.category.name %></td></tr>
       <tr><th>Сумісність</th><td><%= @product.compatibility.presence || "Універсальний" %></td></tr>
-      <tr><th>Наявність</th><td><%= @product.in_stock? ? "✅ В наявності (#{@product.stock} шт.)" : "❌ Немає в наявності" %></td></tr>
+      <tr><th>Наявність</th><td><%= @product.in_stock? ? "В наявності (#{@product.stock} шт.)" : "Немає в наявності" %></td></tr>
     </table>
     <div class="buy-box">
       <div class="price big">
@@ -25,7 +25,7 @@
         <% end %>
       <% end %>
     </div>
-    <p class="delivery-note">🚚 Нова пошта — 1–2 дні · Укрпошта — 3–5 днів · Самовивіз сьогодні</p>
+    <p class="delivery-note">Нова пошта — 1–2 дні · Укрпошта — 3–5 днів · Самовивіз сьогодні</p>
   </div>
 </section>
 <section class="description">
