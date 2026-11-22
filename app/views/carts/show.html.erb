@@ -1,0 +1,41 @@
+<% content_for :title, "Кошик" %>
+<h1>Кошик</h1>
+<% if @items.empty? %>
+  <div class="empty">Ваш кошик порожній. <%= link_to "Перейти до каталогу", products_path %></div>
+<% else %>
+  <div class="cart-layout">
+    <table class="table cart-table">
+      <thead><tr><th colspan="2">Товар</th><th>Ціна</th><th>Кількість</th><th>Сума</th><th></th></tr></thead>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td class="thumb"><%= product_image(item.product, "thumb-img") %></td>
+            <td><%= link_to item.product.name, item.product %><br><small class="muted"><%= item.product.sku %></small></td>
+            <td><%= uah(item.product.price) %></td>
+            <td>
+              <%= form_with url: cart_item_path(item), method: :patch, local: true, class: "qty-form" do %>
+                <%= number_field_tag :quantity, item.quantity, min: 1, max: item.product.stock %>
+                <button type="submit" class="link-btn">Оновити</button>
+              <% end %>
+            </td>
+            <td><b><%= uah(item.total_price) %></b></td>
+            <td><%= button_to "✕", cart_item_path(item), method: :delete, class: "link-btn danger", title: "Видалити" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <aside class="panel summary">
+      <h3>Разом</h3>
+      <p class="sum-line"><span>Товарів: <%= current_cart.total_items %> шт.</span><b><%= uah(current_cart.total_price) %></b></p>
+      <h4>Доставка</h4>
+      <ul class="delivery-list">
+        <% @delivery_methods.each do |d| %>
+          <li><b><%= d.name %></b> — <%= d.price.zero? ? "безкоштовно" : uah(d.price) %>
+            <% if d.free_from %><br><small>безкоштовно від <%= uah(d.free_from) %></small><% end %></li>
+        <% end %>
+      </ul>
+      <%= link_to "Оформити замовлення", new_order_path, class: "btn btn-block" %>
+      <%= button_to "Очистити кошик", cart_path, method: :delete, class: "link-btn danger" %>
+    </aside>
+  </div>
+<% end %>
