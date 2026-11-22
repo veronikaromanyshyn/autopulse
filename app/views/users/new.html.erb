@@ -1,0 +1,15 @@
+<% content_for :title, "Реєстрація" %>
+<div class="auth-box">
+  <h1>Реєстрація</h1>
+  <p class="muted">Створіть обліковий запис, щоб відстежувати замовлення та залишати відгуки.</p>
+  <%= form_with model: @user, url: signup_path, local: true do |f| %>
+    <%= errors_for(@user) %>
+    <%= f.label :name, "Ім'я та прізвище" %><%= f.text_field :name, required: true %>
+    <%= f.label :email %><%= f.email_field :email, required: true %>
+    <%= f.label :phone, "Телефон (необов'язково)" %><%= f.telephone_field :phone, placeholder: "+380501234567" %>
+    <%= f.label :password, "Пароль (мінімум 6 символів)" %><%= f.password_field :password, required: true %>
+    <%= f.label :password_confirmation, "Повторіть пароль" %><%= f.password_field :password_confirmation, required: true %>
+    <%= f.submit "Зареєструватися", class: "btn btn-block" %>
+  <% end %>
+  <p>Вже маєте акаунт? <%= link_to "Увійти", login_path %></p>
+</div>

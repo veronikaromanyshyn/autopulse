@@ -1,0 +1,23 @@
+<% content_for :title, "Особистий кабінет" %>
+<h1>Особистий кабінет</h1>
+<div class="two-col">
+  <div class="panel">
+    <h3>Мої дані</h3>
+    <p><b><%= @user.name %></b><br><%= @user.email %><br><%= @user.phone.presence || "Телефон не вказано" %></p>
+    <p class="muted">Зареєстровано <%= l(@user.created_at.to_date) %></p>
+    <%= link_to "Редагувати профіль", edit_profile_path, class: "btn btn-sm" %>
+  </div>
+  <div class="panel">
+    <h3>Останні замовлення</h3>
+    <% if @orders.any? %>
+      <table class="table">
+        <% @orders.each do |o| %>
+          <tr><td><%= link_to o.number, o %></td><td><%= l(o.created_at, format: :short) %></td><td><%= uah(o.total) %></td><td><%= status_badge(o) %></td></tr>
+        <% end %>
+      </table>
+      <%= link_to "Усі замовлення →", orders_path %>
+    <% else %>
+      <p class="muted">Ви ще нічого не замовляли.</p>
+    <% end %>
+  </div>
+</div>
