@@ -8,7 +8,9 @@
     <div><%= f.label :price, "Ціна, грн" %><%= f.number_field :price, step: 1 %></div>
     <div><%= f.label :old_price, "Стара ціна, грн (для знижки)" %><%= f.number_field :old_price, step: 1 %></div>
     <div><%= f.label :stock, "Залишок на складі, шт." %><%= f.number_field :stock %></div>
-    <div><%= f.label :image, "Файл зображення" %><%= f.select :image, Dir.children(Rails.root.join("app/assets/images/products")).sort, include_blank: "—" %></div>
+    <div><%= f.label :image, "Зображення (файл або URL фото)" %>
+      <%= f.text_field :image, list: "product-images", placeholder: "castrol-edge.jpg або https://…" %>
+      <datalist id="product-images"><% Dir.children(Rails.root.join("app/assets/images/products")).sort.each do |n| %><option value="<%= n %>"><% end %></datalist></div>
   </div>
   <%= f.label :compatibility, "Сумісність з авто" %><%= f.text_field :compatibility, placeholder: "Audi A6 C7, VW Passat B8" %>
   <%= f.label :description %><%= f.text_area :description, rows: 5 %>

@@ -11,8 +11,11 @@ module ApplicationHelper
     end
   end
 
+  # Зображення товару: файл з app/assets/images/products (svg/jpg/png) або пряме посилання на фото
   def product_image(product, css = "product-img")
-    image_tag("products/#{product.image.presence || 'default.svg'}", alt: product.name, class: css)
+    src = product.image.presence || "default.svg"
+    src = "products/#{src}" unless src.start_with?("http://", "https://")
+    image_tag(src, alt: product.name, class: css)
   end
 
   def status_badge(order)
