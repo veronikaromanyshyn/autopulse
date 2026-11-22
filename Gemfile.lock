@@ -170,6 +170,7 @@ DEPENDENCIES
   rails (~> 6.1.7)
   sassc-rails
   sqlite3 (~> 1.4)
+  tzinfo-data
 
 RUBY VERSION
    ruby 3.2.3p157

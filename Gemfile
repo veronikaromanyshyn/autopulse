@@ -8,6 +8,9 @@ gem 'puma'
 gem 'sassc-rails'
 gem 'bcrypt', '~> 3.1.7'
 
+# Дані часових поясів для Windows (там немає системної бази zoneinfo)
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
 group :production do
   # gem 'pg' # PostgreSQL на Render/Heroku
 end

@@ -12,11 +12,14 @@
 7. Оплата товару (картка онлайн через тестовий платіжний шлюз або накладений платіж)
 
 ## Запуск
+Потрібен Ruby 3.2 (на Windows — RubyInstaller «Ruby+Devkit 3.2.x (x64)»).
 ```bash
+gem install bundler
 bundle install
-bin/rails db:setup      # створення БД, міграції, тестові дані
-bin/rails server        # http://localhost:3000
+ruby bin/rails db:setup      # створення БД, міграції, тестові дані
+ruby bin/rails server        # відкрити http://localhost:3000
 ```
+Файл Gemfile.lock не додано свідомо: Bundler сам підбере версії гемів під вашу ОС.
 Адміністратор: `admin@autopulse.ua` / `admin123`  
 Покупець: `oleg@example.com` / `password`  
 Тестова картка: `4242 4242 4242 4242`, будь-який майбутній термін дії, CVV `123`.
