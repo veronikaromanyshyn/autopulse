@@ -1,0 +1,18 @@
+<% content_for :title, "Оплата замовлення" %>
+<div class="pay-box panel">
+  <h1>Оплата замовлення <%= @order.number %></h1>
+  <p class="pay-sum">До сплати: <b><%= uah(@order.total) %></b></p>
+  <%= form_with url: order_payment_path(@order), local: true, class: "card-form" do %>
+    <div class="bank-card">
+      <%= label_tag :card_number, "Номер картки" %>
+      <%= text_field_tag :card_number, nil, placeholder: "4242 4242 4242 4242", maxlength: 19, autocomplete: "cc-number", inputmode: "numeric" %>
+      <div class="grid-3">
+        <div><%= label_tag :exp_month, "Місяць" %><%= text_field_tag :exp_month, nil, placeholder: "MM", maxlength: 2 %></div>
+        <div><%= label_tag :exp_year, "Рік" %><%= text_field_tag :exp_year, nil, placeholder: "РР", maxlength: 2 %></div>
+        <div><%= label_tag :cvv, "CVV" %><%= password_field_tag :cvv, nil, placeholder: "•••", maxlength: 3 %></div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-block">Сплатити <%= uah(@order.total) %></button>
+  <% end %>
+  <p class="muted small">🔒 Тестовий режим платіжного шлюзу: реальні кошти не списуються. Дані картки не зберігаються — у замовленні фіксуються лише останні 4 цифри.</p>
+</div>
