@@ -1,0 +1,23 @@
+<% content_for :title, "Контакти" %>
+<h1>Зворотний зв'язок</h1>
+<div class="two-col">
+  <div class="panel">
+    <h3>Напишіть нам</h3>
+    <%= form_with model: @feedback, url: contacts_path, local: true do |f| %>
+      <%= errors_for(@feedback) %>
+      <%= f.label :name, "Ваше ім'я" %><%= f.text_field :name %>
+      <%= f.label :email %><%= f.email_field :email %>
+      <%= f.label :subject, "Тема звернення" %><%= f.select :subject, FeedbackMessage::SUBJECTS %>
+      <%= f.label :body, "Повідомлення" %><%= f.text_area :body, rows: 5, placeholder: "Опишіть питання. Для підбору запчастин вкажіть VIN-код авто." %>
+      <%= f.submit "Надіслати", class: "btn" %>
+    <% end %>
+  </div>
+  <div class="panel">
+    <h3>Контакти магазину</h3>
+    <p>📍 м. Івано-Франківськ, вул. Карпатська, 15<br>📞 0 800 123 456 (безкоштовно)<br>✉️ info@autopulse.ua</p>
+    <h4>Графік роботи</h4>
+    <p>Пн–Пт: 9:00–19:00<br>Сб: 10:00–16:00<br>Нд: вихідний</p>
+    <h4>Самовивіз</h4>
+    <p>Замовлення, оформлене до 14:00, можна забрати того ж дня.</p>
+  </div>
+</div>
