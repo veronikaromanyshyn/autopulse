@@ -1,0 +1,18 @@
+<%= form_with model: [:admin, product], local: true, class: "admin-form panel" do |f| %>
+  <%= errors_for(product) %>
+  <div class="grid-2">
+    <div><%= f.label :name %><%= f.text_field :name %></div>
+    <div><%= f.label :category_id, "Категорія" %><%= f.collection_select :category_id, Category.all, :id, :name %></div>
+    <div><%= f.label :brand %><%= f.text_field :brand %></div>
+    <div><%= f.label :sku %><%= f.text_field :sku %></div>
+    <div><%= f.label :price, "Ціна, грн" %><%= f.number_field :price, step: 1 %></div>
+    <div><%= f.label :old_price, "Стара ціна, грн (для знижки)" %><%= f.number_field :old_price, step: 1 %></div>
+    <div><%= f.label :stock, "Залишок на складі, шт." %><%= f.number_field :stock %></div>
+    <div><%= f.label :image, "Файл зображення" %><%= f.select :image, Dir.children(Rails.root.join("app/assets/images/products")).sort, include_blank: "—" %></div>
+  </div>
+  <%= f.label :compatibility, "Сумісність з авто" %><%= f.text_field :compatibility, placeholder: "Audi A6 C7, VW Passat B8" %>
+  <%= f.label :description %><%= f.text_area :description, rows: 5 %>
+  <label class="check"><%= f.check_box :featured %> Показувати у «Хітах продажу»</label>
+  <%= f.submit class: "btn" %>
+  <%= link_to "Скасувати", admin_products_path, class: "btn btn-outline" %>
+<% end %>
