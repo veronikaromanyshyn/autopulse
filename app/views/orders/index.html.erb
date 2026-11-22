@@ -1,0 +1,12 @@
+<% content_for :title, "Мої замовлення" %>
+<h1>Мої замовлення</h1>
+<% if @orders.any? %>
+  <table class="table">
+    <thead><tr><th>Номер</th><th>Дата</th><th>Доставка</th><th>Сума</th><th>Статус</th></tr></thead>
+    <% @orders.each do |o| %>
+      <tr><td><%= link_to o.number, o %></td><td><%= l(o.created_at, format: :short) %></td><td><%= o.delivery_method.name %></td><td><%= uah(o.total) %></td><td><%= status_badge(o) %></td></tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="empty">Замовлень ще немає.</p>
+<% end %>

@@ -1,0 +1,44 @@
+<% content_for :title, "Оформлення замовлення" %>
+<h1>Оформлення замовлення</h1>
+<%= form_with model: @order, local: true, class: "checkout" do |f| %>
+  <div class="checkout-main">
+    <%= errors_for(@order) %>
+    <fieldset class="panel">
+      <legend>1. Контактні дані</legend>
+      <div class="grid-2">
+        <div><%= f.label :full_name, "ПІБ отримувача" %><%= f.text_field :full_name %></div>
+        <div><%= f.label :phone, "Телефон" %><%= f.telephone_field :phone, placeholder: "+380501234567" %></div>
+        <div><%= f.label :email %><%= f.email_field :email %></div>
+        <div><%= f.label :city, "Місто" %><%= f.text_field :city, placeholder: "Івано-Франківськ" %></div>
+      </div>
+    </fieldset>
+    <fieldset class="panel">
+      <legend>2. Спосіб доставки</legend>
+      <% @delivery_methods.each do |d| %>
+        <label class="option">
+          <%= f.radio_button :delivery_method_id, d.id %>
+          <span><b><%= d.name %></b> — <%= d.cost_for(current_cart.total_price).zero? ? "безкоштовно" : uah(d.price) %><br><small><%= d.description %></small></span>
+        </label>
+      <% end %>
+      <%= f.label :address, "Номер відділення або адреса доставки" %>
+      <%= f.text_field :address, placeholder: "Відділення №5 або вул. Незалежності, 10, кв. 3" %>
+    </fieldset>
+    <fieldset class="panel">
+      <legend>3. Спосіб оплати</legend>
+      <% Order::PAYMENT_METHODS.each do |code, name| %>
+        <label class="option"><%= f.radio_button :payment_method, code %> <span><b><%= name %></b></span></label>
+      <% end %>
+      <%= f.label :comment, "Коментар до замовлення" %>
+      <%= f.text_area :comment, rows: 2 %>
+    </fieldset>
+  </div>
+  <aside class="panel summary">
+    <h3>Ваше замовлення</h3>
+    <% @items.each do |i| %>
+      <p class="sum-line"><span><%= i.product.name %> × <%= i.quantity %></span><span><%= uah(i.total_price) %></span></p>
+    <% end %>
+    <hr>
+    <p class="sum-line total"><span>До сплати (без доставки)</span><b><%= uah(current_cart.total_price) %></b></p>
+    <%= f.submit "Підтвердити замовлення", class: "btn btn-block" %>
+  </aside>
+<% end %>
