@@ -1,0 +1,25 @@
+<h1>Замовлення <%= @order.number %> <%= status_badge(@order) %></h1>
+<div class="two-col">
+  <div class="panel">
+    <h3>Клієнт і доставка</h3>
+    <p><%= @order.full_name %> · <%= @order.phone %> · <%= @order.email %><br>
+      <%= @order.delivery_method.name %>: <%= @order.city %>, <%= @order.address %><br>
+      <%= @order.payment_name %><% if @order.paid? %> · транзакція <%= @order.payment_reference %><% end %></p>
+    <% if @order.comment.present? %><p><i>«<%= @order.comment %>»</i></p><% end %>
+  </div>
+  <div class="panel">
+    <h3>Змінити статус</h3>
+    <%= form_with model: [:admin, @order], local: true do |f| %>
+      <%= f.select :status, Order::STATUSES.invert %>
+      <%= f.submit "Оновити", class: "btn btn-sm" %>
+    <% end %>
+  </div>
+</div>
+<table class="table">
+  <thead><tr><th>Товар</th><th>Ціна</th><th>К-сть</th><th>Сума</th></tr></thead>
+  <% @order.order_items.each do |i| %>
+    <tr><td><%= i.product&.name %></td><td><%= uah(i.price) %></td><td><%= i.quantity %></td><td><%= uah(i.total_price) %></td></tr>
+  <% end %>
+  <tr><td colspan="3">Доставка</td><td><%= uah(@order.delivery_cost) %></td></tr>
+  <tr class="total"><td colspan="3"><b>Разом</b></td><td><b><%= uah(@order.total) %></b></td></tr>
+</table>

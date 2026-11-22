@@ -1,0 +1,9 @@
+<h1>Звернення клієнтів</h1>
+<% @messages.each do |m| %>
+  <div class="panel message <%= m.status %>">
+    <div class="review-head"><b><%= m.subject %></b> · <%= m.name %> &lt;<%= m.email %>&gt; <small><%= l(m.created_at, format: :short) %></small>
+      <%= m.status == "new" ? content_tag(:span, "нове", class: "badge badge-awaiting") : content_tag(:span, "оброблено", class: "badge badge-completed") %></div>
+    <p><%= m.body %></p>
+    <% if m.status == "new" %><%= button_to "Позначити обробленим", admin_feedback_message_path(m), method: :patch, class: "btn btn-sm" %><% end %>
+  </div>
+<% end %>

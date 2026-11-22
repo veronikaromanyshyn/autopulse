@@ -1,0 +1,15 @@
+<h1>Замовлення</h1>
+<nav class="tabs">
+  <%= link_to "Усі", admin_orders_path, class: ("active" if params[:status].blank?) %>
+  <% Order::STATUSES.each do |code, name| %>
+    <%= link_to name, admin_orders_path(status: code), class: ("active" if params[:status] == code) %>
+  <% end %>
+</nav>
+<table class="table admin-table">
+  <thead><tr><th>Номер</th><th>Дата</th><th>Клієнт</th><th>Доставка</th><th>Оплата</th><th>Сума</th><th>Статус</th></tr></thead>
+  <% @orders.each do |o| %>
+    <tr><td><%= link_to o.number, admin_order_path(o) %></td><td><%= l(o.created_at, format: :short) %></td>
+      <td><%= o.full_name %><br><small><%= o.phone %></small></td><td><%= o.delivery_method.name %></td>
+      <td><%= o.payment_method == "card" ? "Картка" : "Накл. платіж" %></td><td><%= uah(o.total) %></td><td><%= status_badge(o) %></td></tr>
+  <% end %>
+</table>

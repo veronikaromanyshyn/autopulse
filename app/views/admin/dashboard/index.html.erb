@@ -1,0 +1,26 @@
+<h1>Огляд магазину</h1>
+<div class="stats">
+  <div class="stat"><span>Товарів</span><b><%= @stats[:products] %></b></div>
+  <div class="stat"><span>Замовлень</span><b><%= @stats[:orders] %></b></div>
+  <div class="stat"><span>Виручка (оплачені)</span><b><%= uah(@stats[:revenue]) %></b></div>
+  <div class="stat"><span>Користувачів</span><b><%= @stats[:users] %></b></div>
+  <div class="stat"><span>Нових звернень</span><b><%= @stats[:feedback] %></b></div>
+</div>
+<div class="two-col">
+  <div class="panel">
+    <h3>Останні замовлення</h3>
+    <table class="table">
+      <% @recent_orders.each do |o| %>
+        <tr><td><%= link_to o.number, admin_order_path(o) %></td><td><%= o.full_name %></td><td><%= uah(o.total) %></td><td><%= status_badge(o) %></td></tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="panel">
+    <h3>Закінчуються на складі</h3>
+    <table class="table">
+      <% @low_stock.each do |p| %>
+        <tr><td><%= link_to p.name, edit_admin_product_path(p) %></td><td><b><%= p.stock %></b> шт.</td></tr>
+      <% end %>
+    </table>
+  </div>
+</div>
