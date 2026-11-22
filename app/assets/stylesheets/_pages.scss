@@ -25,7 +25,7 @@
 .summary { position: sticky; top: 10px; }
 .sum-line { display: flex; justify-content: space-between; gap: 10px; margin: 6px 0; &.total { font-size: 17px; } }
 .delivery-list { padding-left: 18px; font-size: 14px; }
-fieldset.panel { border: 0; legend { font-weight: 700; font-size: 17px; padding: 0; margin-bottom: 4px; float: left; width: 100%; } }
+fieldset.panel { border: 0; min-width: 0; legend { font-weight: 700; font-size: 17px; padding: 0; margin-bottom: 8px; display: block; } }
 .option { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; border: 1px solid $border; padding: 10px 12px; border-radius: 8px; cursor: pointer;
   input { margin-top: 5px; } }
 .pay-box { max-width: 480px; margin: 20px auto; .pay-sum { font-size: 18px; } }

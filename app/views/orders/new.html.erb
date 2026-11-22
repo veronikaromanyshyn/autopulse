@@ -3,17 +3,17 @@
 <%= form_with model: @order, local: true, class: "checkout" do |f| %>
   <div class="checkout-main">
     <%= errors_for(@order) %>
-    <fieldset class="panel">
-      <legend>1. Контактні дані</legend>
+    <div class="panel">
+      <h3>1. Контактні дані</h3>
       <div class="grid-2">
         <div><%= f.label :full_name, "ПІБ отримувача" %><%= f.text_field :full_name %></div>
         <div><%= f.label :phone, "Телефон" %><%= f.telephone_field :phone, placeholder: "+380501234567" %></div>
         <div><%= f.label :email %><%= f.email_field :email %></div>
         <div><%= f.label :city, "Місто" %><%= f.text_field :city, placeholder: "Івано-Франківськ" %></div>
       </div>
-    </fieldset>
-    <fieldset class="panel">
-      <legend>2. Спосіб доставки</legend>
+    </div>
+    <div class="panel">
+      <h3>2. Спосіб доставки</h3>
       <% @delivery_methods.each do |d| %>
         <label class="option">
           <%= f.radio_button :delivery_method_id, d.id %>
@@ -22,15 +22,15 @@
       <% end %>
       <%= f.label :address, "Номер відділення або адреса доставки" %>
       <%= f.text_field :address, placeholder: "Відділення №5 або вул. Незалежності, 10, кв. 3" %>
-    </fieldset>
-    <fieldset class="panel">
-      <legend>3. Спосіб оплати</legend>
+    </div>
+    <div class="panel">
+      <h3>3. Спосіб оплати</h3>
       <% Order::PAYMENT_METHODS.each do |code, name| %>
         <label class="option"><%= f.radio_button :payment_method, code %> <span><b><%= name %></b></span></label>
       <% end %>
       <%= f.label :comment, "Коментар до замовлення" %>
       <%= f.text_area :comment, rows: 2 %>
-    </fieldset>
+    </div>
   </div>
   <aside class="panel summary">
     <h3>Ваше замовлення</h3>

@@ -21,7 +21,7 @@ main.container { min-height: 70vh; padding-bottom: 40px; }
 .cart-count { background: $primary; color: #fff; border-radius: 12px; padding: 1px 8px; font-size: 13px; }
 .cat-nav { border-top: 1px solid $border;
   .container { display: flex; gap: 4px; overflow-x: auto; }
-  a { padding: 11px 13px; color: $text; font-weight: 500; white-space: nowrap; border-bottom: 3px solid transparent;
+  a { padding: 11px 10px; font-size: 14.5px; color: $text; font-weight: 500; white-space: nowrap; border-bottom: 3px solid transparent;
     &:hover, &.active { color: $primary; border-color: $primary; text-decoration: none; } }
   .right { margin-left: auto; } }
 

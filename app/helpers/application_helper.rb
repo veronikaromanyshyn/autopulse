@@ -1,6 +1,7 @@
 module ApplicationHelper
   def uah(amount)
-    number_to_currency(amount, unit: "грн", format: "%n %u", precision: 0, delimiter: " ")
+    content_tag(:span, number_to_currency(amount, unit: "грн", format: "%n %u", precision: 0, delimiter: " "),
+                class: "money")
   end
 
   def stars(rating)

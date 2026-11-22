@@ -44,3 +44,5 @@ input[type=text], input[type=email], input[type=password], input[type=tel], inpu
 .card-brand { font-size: 12px; text-transform: uppercase; color: $muted; font-weight: 600; letter-spacing: .5px; }
 .price { s { color: $muted; font-size: 13px; display: block; } strong { font-size: 19px; color: $dark; }
   &.big strong { font-size: 30px; } }
+.money { white-space: nowrap; }
+.table a { white-space: nowrap; }
