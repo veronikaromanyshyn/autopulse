@@ -1,0 +1,66 @@
+<% content_for :title, @product.name %>
+<nav class="crumbs"><%= link_to "Головна", root_path %> / <%= link_to @product.category.name, category_path(@product.category.slug) %> / <%= @product.name %></nav>
+<section class="product">
+  <div class="product-gallery"><%= product_image(@product, "product-big") %></div>
+  <div class="product-info">
+    <span class="card-brand"><%= @product.brand %></span>
+    <h1><%= @product.name %></h1>
+    <div class="card-meta"><%= stars(@product.average_rating) %> <%= @product.average_rating %> · <%= link_to "#{@reviews.size} відгуків", "#reviews" %></div>
+    <table class="specs">
+      <tr><th>Артикул</th><td><%= @product.sku %></td></tr>
+      <tr><th>Категорія</th><td><%= @product.category.name %></td></tr>
+      <tr><th>Сумісність</th><td><%= @product.compatibility.presence || "Універсальний" %></td></tr>
+      <tr><th>Наявність</th><td><%= @product.in_stock? ? "✅ В наявності (#{@product.stock} шт.)" : "❌ Немає в наявності" %></td></tr>
+    </table>
+    <div class="buy-box">
+      <div class="price big">
+        <% if @product.old_price %><s><%= uah(@product.old_price) %></s><% end %>
+        <strong><%= uah(@product.price) %></strong>
+      </div>
+      <% if @product.in_stock? %>
+        <%= form_with url: cart_items_path, local: true, class: "buy-form" do %>
+          <%= hidden_field_tag :product_id, @product.id %>
+          <%= number_field_tag :quantity, 1, min: 1, max: @product.stock %>
+          <button type="submit" class="btn">Додати в кошик</button>
+        <% end %>
+      <% end %>
+    </div>
+    <p class="delivery-note">🚚 Нова пошта — 1–2 дні · Укрпошта — 3–5 днів · Самовивіз сьогодні</p>
+  </div>
+</section>
+<section class="description">
+  <h2>Опис</h2>
+  <p><%= simple_format(@product.description) %></p>
+</section>
+
+<section id="reviews" class="reviews">
+  <h2>Відгуки покупців (<%= @reviews.size %>)</h2>
+  <% if logged_in? %>
+    <%= form_with model: [@product, @review], local: true, class: "review-form" do |f| %>
+      <%= errors_for(@review) %>
+      <div class="row">
+        <%= f.label :rating, "Ваша оцінка" %>
+        <%= f.select :rating, [["★★★★★ Відмінно", 5], ["★★★★ Добре", 4], ["★★★ Нормально", 3], ["★★ Погано", 2], ["★ Жахливо", 1]] %>
+      </div>
+      <%= f.text_area :body, rows: 3, placeholder: "Поділіться враженнями про товар (мінімум 10 символів)" %>
+      <%= f.submit "Залишити відгук", class: "btn" %>
+    <% end %>
+  <% else %>
+    <p class="muted"><%= link_to "Увійдіть", login_path %>, щоб залишити відгук.</p>
+  <% end %>
+  <% @reviews.each do |r| %>
+    <% next if r.new_record? %>
+    <div class="review">
+      <div class="review-head"><b><%= r.user.name %></b> <%= stars(r.rating) %> <small><%= l(r.created_at, format: :short) %></small></div>
+      <p><%= r.body %></p>
+      <% if r.user == current_user || admin? %>
+        <%= button_to "Видалити", product_review_path(@product, r), method: :delete, class: "link-btn danger" %>
+      <% end %>
+    </div>
+  <% end %>
+</section>
+
+<% if @related.any? %>
+  <h2>Схожі товари</h2>
+  <div class="grid"><%= render partial: "card", collection: @related, as: :product %></div>
+<% end %>

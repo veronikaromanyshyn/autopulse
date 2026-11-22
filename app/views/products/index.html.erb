@@ -1,0 +1,48 @@
+<% content_for :title, @category&.name || "Каталог" %>
+<% if @featured.present? %>
+  <section class="hero">
+    <div>
+      <h1>Усе для вашого авто — в одному місці</h1>
+      <p>Понад 30 позицій оригінальних і якісних аналогових запчастин, олив та аксесуарів. Підбір за маркою авто, доставка Новою поштою за 1–2 дні.</p>
+      <%= link_to "Перейти до каталогу", "#catalog", class: "btn" %>
+    </div>
+    <ul class="hero-points">
+      <li><b>🚚</b> Доставка по Україні</li>
+      <li><b>🔧</b> Підбір за VIN-кодом</li>
+      <li><b>💳</b> Оплата карткою або при отриманні</li>
+      <li><b>↩️</b> 14 днів на повернення</li>
+    </ul>
+  </section>
+  <h2>Хіти продажу</h2>
+  <div class="grid"><%= render partial: "card", collection: @featured, as: :product %></div>
+<% end %>
+
+<section id="catalog" class="catalog">
+  <aside class="filters">
+    <%= form_with url: (@category ? category_path(@category.slug) : products_path), method: :get, local: true do %>
+      <%= hidden_field_tag :q, params[:q] if params[:q].present? %>
+      <h4>Бренд</h4>
+      <%= select_tag :brand, options_for_select(@brands, params[:brand]), include_blank: "Усі бренди" %>
+      <h4>Сортування</h4>
+      <%= select_tag :sort, options_for_select([["Новинки", "new"], ["Спочатку дешевші", "price_asc"], ["Спочатку дорожчі", "price_desc"], ["За назвою", "name"]], params[:sort]) %>
+      <label class="check"><%= check_box_tag :in_stock, "1", params[:in_stock] == "1" %> Лише в наявності</label>
+      <button class="btn btn-block" type="submit">Застосувати</button>
+    <% end %>
+  </aside>
+  <div>
+    <h1 class="page-title"><%= @category&.name || (params[:q].present? ? "Пошук: «#{params[:q]}»" : "Усі товари") %>
+      <small><%= @total %> товарів</small></h1>
+    <% if @products.any? %>
+      <div class="grid"><%= render partial: "card", collection: @products, as: :product %></div>
+      <% if @pages > 1 %>
+        <nav class="pager">
+          <% (1..@pages).each do |p| %>
+            <%= link_to p, request.query_parameters.merge(page: p), class: ("current" if p == @page) %>
+          <% end %>
+        </nav>
+      <% end %>
+    <% else %>
+      <p class="empty">За вашим запитом нічого не знайдено. Спробуйте змінити фільтри.</p>
+    <% end %>
+  </div>
+</section>

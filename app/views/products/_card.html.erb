@@ -1,0 +1,22 @@
+<article class="card">
+  <%= link_to product, class: "card-img" do %>
+    <%= product_image(product) %>
+    <% if product.discount_percent.positive? %><span class="sale">−<%= product.discount_percent %>%</span><% end %>
+  <% end %>
+  <div class="card-body">
+    <span class="card-brand"><%= product.brand %></span>
+    <h3><%= link_to product.name, product %></h3>
+    <div class="card-meta"><%= stars(product.average_rating) %> <small>(<%= product.reviews.size %>)</small></div>
+    <div class="card-bottom">
+      <div class="price">
+        <% if product.old_price %><s><%= uah(product.old_price) %></s><% end %>
+        <strong><%= uah(product.price) %></strong>
+      </div>
+      <% if product.in_stock? %>
+        <%= button_to "У кошик", cart_items_path(product_id: product.id), class: "btn btn-sm" %>
+      <% else %>
+        <span class="muted">Немає</span>
+      <% end %>
+    </div>
+  </div>
+</article>
