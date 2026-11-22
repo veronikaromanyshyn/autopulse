@@ -1,0 +1,37 @@
+<header class="site-header">
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>📞 0 800 123 456 · Пн–Сб 9:00–19:00</span>
+      <span>Безкоштовна доставка від 2 000 грн</span>
+    </div>
+  </div>
+  <div class="container header-main">
+    <%= link_to root_path, class: "logo" do %>Auto<span>Pulse</span><% end %>
+    <%= form_with url: products_path, method: :get, local: true, class: "search" do %>
+      <%= search_field_tag :q, params[:q], placeholder: "Назва, артикул або авто (напр. Audi A6)" %>
+      <button type="submit">Знайти</button>
+    <% end %>
+    <nav class="user-nav">
+      <% if logged_in? %>
+        <% if admin? %><%= link_to "Адмінка", admin_root_path %><% end %>
+        <%= link_to "👤 #{current_user.name}", profile_path %>
+        <%= button_to "Вийти", logout_path, method: :delete, class: "link-btn" %>
+      <% else %>
+        <%= link_to "Увійти", login_path %>
+        <%= link_to "Реєстрація", signup_path, class: "btn btn-sm" %>
+      <% end %>
+      <%= link_to cart_path, class: "cart-link" do %>
+        🛒 Кошик <span class="cart-count"><%= current_cart.total_items %></span>
+      <% end %>
+    </nav>
+  </div>
+  <nav class="cat-nav">
+    <div class="container">
+      <%= link_to "Усі товари", products_path, class: ("active" if @category.nil? && controller_name == "products" && action_name == "index") %>
+      <% @nav_categories.each do |c| %>
+        <%= link_to c.name, category_path(c.slug), class: ("active" if @category == c) %>
+      <% end %>
+      <%= link_to "Контакти", contacts_path, class: "right" %>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <title>Адмін-панель — AutoPulse</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "application", media: "all" %>
+  </head>
+  <body class="admin">
+    <div class="admin-shell">
+      <aside class="admin-side">
+        <%= link_to "AutoPulse", admin_root_path, class: "logo" %>
+        <span class="admin-tag">адмін-панель</span>
+        <nav>
+          <%= link_to "Огляд", admin_root_path %>
+          <%= link_to "Товари", admin_products_path %>
+          <%= link_to "Замовлення", admin_orders_path %>
+          <%= link_to "Звернення", admin_feedback_messages_path %>
+          <%= link_to "← На сайт", root_path %>
+        </nav>
+      </aside>
+      <section class="admin-main">
+        <%= render "shared/flash" %>
+        <%= yield %>
+      </section>
+    </div>
+  </body>
+</html>

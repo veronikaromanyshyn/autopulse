@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#f3f5f8"/><ellipse cx="200" cy="262" rx="120" ry="12" fill="#000" opacity=".08"/><path d="M130 70 h110 l30 30 v155 a8 8 0 0 1 -8 8 h-132 a8 8 0 0 1 -8 -8 v-177 a8 8 0 0 1 8 -8z" fill="#1a4fa0"/>
+<rect x="150" y="45" width="40" height="28" rx="4" fill="#c8102e"/><path d="M240 70 l30 30 h-30z" fill="#c8102e" opacity=".6"/>
+<rect x="135" y="130" width="130" height="80" rx="6" fill="#c8102e"/><text x="200" y="165" font-family="Arial,Helvetica" font-weight="700" font-size="22" fill="#fff" text-anchor="middle">LIQUI MOLY</text><text x="200" y="192" font-family="Arial,Helvetica" font-weight="700" font-size="15" fill="#fff" text-anchor="middle">Top Tec 4200</text>
+<rect x="252" y="110" width="10" height="120" rx="5" fill="#fff" opacity=".25"/></svg>

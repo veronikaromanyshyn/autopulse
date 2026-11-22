@@ -1,0 +1,14 @@
+body.admin { background: #eef0f4; }
+.admin-shell { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+.admin-side { background: $dark; color: #fff; padding: 20px;
+  .logo { color: #fff; font-size: 24px; display: block; }
+  .admin-tag { color: $primary; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  nav { margin-top: 24px; a { display: block; color: #c9cfdb; padding: 9px 12px; border-radius: 8px; &:hover { background: #2c3446; color: #fff; text-decoration: none; } } } }
+.admin-main { padding: 24px 32px; }
+.admin-head { display: flex; justify-content: space-between; align-items: center; }
+.stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 20px;
+  .stat { background: #fff; border-radius: $radius; padding: 16px; box-shadow: $shadow; span { color: $muted; font-size: 13px; display: block; } b { font-size: 24px; } } }
+.admin-table { box-shadow: $shadow; border-radius: $radius; overflow: hidden; td.low { color: #b3261e; font-weight: 700; } .actions { white-space: nowrap; form { display: inline; margin-left: 8px; } } }
+.admin-form { max-width: 820px; .btn { margin-top: 16px; } }
+.tabs { display: flex; gap: 6px; margin-bottom: 14px; a { padding: 6px 12px; background: #fff; border-radius: 6px; color: $text; &.active { background: $primary; color: #fff; } } }
+.message.answered { opacity: .7; }

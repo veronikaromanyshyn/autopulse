@@ -1,0 +1,91 @@
+uk:
+  date:
+    formats:
+      default: "%d.%m.%Y"
+    month_names: [~, січня, лютого, березня, квітня, травня, червня, липня, серпня, вересня, жовтня, листопада, грудня]
+    abbr_month_names: [~, січ, лют, бер, кві, тра, чер, лип, сер, вер, жов, лис, гру]
+    order:
+      - :day
+      - :month
+      - :year
+  time:
+    formats:
+      default: "%d.%m.%Y %H:%M"
+      short: "%d.%m.%Y"
+  number:
+    currency:
+      format:
+        unit: "₴"
+        format: "%n %u"
+        separator: ","
+        delimiter: " "
+        precision: 2
+        strip_insignificant_zeros: true
+  helpers:
+    submit:
+      create: "Зберегти"
+      update: "Зберегти зміни"
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      blank: "не може бути порожнім"
+      taken: "вже використовується"
+      invalid: "має невірний формат"
+      too_short: "занадто короткий (мінімум %{count} символів)"
+      too_long: "занадто довгий (максимум %{count} символів)"
+      confirmation: "не збігається з паролем"
+      inclusion: "має недопустиме значення"
+      not_a_number: "має бути числом"
+      not_an_integer: "має бути цілим числом"
+      greater_than: "має бути більше %{count}"
+      greater_than_or_equal_to: "має бути не менше %{count}"
+      required: "має бути вказано"
+      restrict_dependent_destroy:
+        has_many: "має пов'язані записи: %{record}"
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "Помилки валідації: %{errors}"
+    models:
+      user: Користувач
+      product: Товар
+      order: Замовлення
+    attributes:
+      user:
+        name: "Ім'я"
+        email: "Email"
+        phone: "Телефон"
+        password: "Пароль"
+        password_confirmation: "Підтвердження пароля"
+      product:
+        category: "Категорія"
+        name: "Назва"
+        brand: "Бренд"
+        sku: "Артикул"
+        description: "Опис"
+        price: "Ціна"
+        old_price: "Стара ціна"
+        stock: "Залишок"
+        image: "Зображення"
+        compatibility: "Сумісність"
+        featured: "Хіт продажу"
+      review:
+        rating: "Оцінка"
+        body: "Текст відгуку"
+        user_id: "Користувач"
+      cart_item:
+        quantity: "Кількість"
+      order:
+        full_name: "ПІБ отримувача"
+        phone: "Телефон"
+        email: "Email"
+        city: "Місто"
+        address: "Відділення / адреса"
+        comment: "Коментар"
+        delivery_method: "Спосіб доставки"
+        payment_method: "Спосіб оплати"
+      feedback_message:
+        name: "Ім'я"
+        email: "Email"
+        subject: "Тема"
+        body: "Повідомлення"

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <title><%= content_for?(:title) ? "#{yield(:title)} — AutoPulse" : "AutoPulse — інтернет-магазин автотоварів" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Автотовари, запчастини, оливи та аксесуари з доставкою по Україні">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "application", media: "all" %>
+  </head>
+  <body>
+    <%= render "shared/header" %>
+    <main class="container">
+      <%= render "shared/flash" %>
+      <%= yield %>
+    </main>
+    <%= render "shared/footer" %>
+  </body>
+</html>

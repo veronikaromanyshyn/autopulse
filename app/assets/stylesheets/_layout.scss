@@ -1,0 +1,32 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Segoe UI", Roboto, Arial, sans-serif; color: $text; background: $bg; font-size: 15px; line-height: 1.5; }
+a { color: $primary-dark; text-decoration: none; &:hover { text-decoration: underline; } }
+h1 { font-size: 26px; margin: 18px 0; } h2 { font-size: 21px; margin: 28px 0 14px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+main.container { min-height: 70vh; padding-bottom: 40px; }
+
+.topbar { background: $dark; color: #c9cfdb; font-size: 13px;
+  .topbar-inner { display: flex; justify-content: space-between; padding: 6px 20px; } }
+.site-header { background: #fff; box-shadow: $shadow; margin-bottom: 20px; }
+.header-main { display: flex; align-items: center; gap: 24px; padding-top: 14px; padding-bottom: 14px; }
+.logo { font-size: 28px; font-weight: 800; color: $dark; letter-spacing: -.5px;
+  span { color: $primary; } &:hover { text-decoration: none; } }
+.search { flex: 1; display: flex;
+  input { flex: 1; padding: 10px 14px; border: 2px solid $primary; border-right: 0; border-radius: $radius 0 0 $radius; font-size: 15px; }
+  button { background: $primary; color: #fff; border: 0; padding: 0 20px; border-radius: 0 $radius $radius 0; font-weight: 600; cursor: pointer; }
+  &.inline { max-width: 480px; margin-bottom: 16px; } }
+.user-nav { display: flex; align-items: center; gap: 14px; white-space: nowrap;
+  form { display: inline; } }
+.cart-link { font-weight: 600; color: $dark; }
+.cart-count { background: $primary; color: #fff; border-radius: 12px; padding: 1px 8px; font-size: 13px; }
+.cat-nav { border-top: 1px solid $border;
+  .container { display: flex; gap: 4px; overflow-x: auto; }
+  a { padding: 11px 13px; color: $text; font-weight: 500; white-space: nowrap; border-bottom: 3px solid transparent;
+    &:hover, &.active { color: $primary; border-color: $primary; text-decoration: none; } }
+  .right { margin-left: auto; } }
+
+.site-footer { background: $dark; color: #b8bfcc; margin-top: 40px; padding: 30px 0 10px;
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 30px; }
+  h4 { color: #fff; margin-top: 0; } a { display: block; color: #b8bfcc; }
+  .logo { color: #fff; font-size: 22px; }
+  .copy { text-align: center; font-size: 13px; border-top: 1px solid #333a4a; margin-top: 20px; padding-top: 10px; } }

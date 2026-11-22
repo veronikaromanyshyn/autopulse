@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#f3f5f8"/><ellipse cx="200" cy="262" rx="120" ry="12" fill="#000" opacity=".08"/><path d="M110 110 q90 -50 180 0 v50 q-90 -40 -180 0z" fill="#555"/><path d="M118 118 q82 -42 164 0 v34 q-82 -34 -164 0z" fill="#2b2b2b"/>
+<path d="M110 175 q90 -50 180 0 v50 q-90 -40 -180 0z" fill="#555"/><path d="M118 183 q82 -42 164 0 v34 q-82 -34 -164 0z" fill="#2b2b2b"/>
+<rect x="135" y="245" width="130" height="30" rx="5" fill="#1b5fa8"/><text x="200" y="266" font-family="Arial,Helvetica" font-weight="700" font-size="16" fill="#fff" text-anchor="middle">Textar</text></svg>

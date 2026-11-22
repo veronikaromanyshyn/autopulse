@@ -1,0 +1,19 @@
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="logo">Auto<span>Pulse</span></div>
+      <p>Інтернет-магазин автотоварів: оливи, фільтри, гальмівні системи, акумулятори та аксесуари.</p>
+    </div>
+    <div>
+      <h4>Покупцям</h4>
+      <%= link_to "Доставка та оплата", cart_path %>
+      <%= link_to "Мої замовлення", orders_path %>
+      <%= link_to "Зворотний зв'язок", contacts_path %>
+    </div>
+    <div>
+      <h4>Контакти</h4>
+      <p>м. Івано-Франківськ, вул. Карпатська, 15<br>0 800 123 456 · info@autopulse.ua</p>
+    </div>
+  </div>
+  <div class="copy">© <%= Date.current.year %> AutoPulse. Навчальний проєкт, Ruby on Rails <%= Rails.version %>.</div>
+</footer>
