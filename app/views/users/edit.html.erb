@@ -1,0 +1,12 @@
+<% content_for :title, "Редагування профілю" %>
+<div class="auth-box">
+  <h1>Редагування профілю</h1>
+  <%= form_with model: @user, url: profile_path, method: :patch, local: true do |f| %>
+    <%= errors_for(@user) %>
+    <%= f.label :name, "Ім'я" %><%= f.text_field :name %>
+    <%= f.label :phone, "Телефон" %><%= f.telephone_field :phone %>
+    <%= f.label :password, "Новий пароль (залиште порожнім, щоб не змінювати)" %><%= f.password_field :password %>
+    <%= f.label :password_confirmation, "Повторіть пароль" %><%= f.password_field :password_confirmation %>
+    <%= f.submit "Зберегти", class: "btn btn-block" %>
+  <% end %>
+</div>
