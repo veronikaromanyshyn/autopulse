@@ -146,6 +146,43 @@ P.("accessories", "Антифриз G13 концентрат VAG, 1,5 л", "VAG"
    "Audi, VW, Skoda, Seat 2008+",
    "Оригінальний концентрат охолоджувальної рідини G13 фіолетового кольору. Розводиться 1:1 з дистильованою водою.")
 
+puts "Фото товарів..."
+# Реальні фото товарів (посилання), у порядку створення товарів
+PRODUCT_PHOTOS = {
+  "CAS-15669E" => "https://images2.exist.ua/media/images/products/2023/11/2023-12-11_16-02-27_15711565.jpg",
+  "MOB-154297" => "https://cdn.idealo.com/folder/Product/1542/5/1542583/s1_produktbild_gross/liqui-moly-top-tec-4300-5w-30-5-l.jpg",
+  "SH-550052679" => "https://tse2.mm.bing.net/th/id/OIP.p7LE2dXqwTGpYOdHoF12mAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "MOT-102020" => "https://cdn.27.ua/sc--media--prod/default/e8/70/52/e8705235-f240-41fd-ac6d-a8ed0b4752e6.jpg",
+  "LM-8973" => "https://tse2.mm.bing.net/th/id/OIP.GesKe1V73tr7C4B0sipkaQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "FEB-27001" => "https://media.cdn.kaufland.de/product-images/1024x1024/c9f820d3f0700fb13c0d192b385f183b.jpg",
+  "MANN-W71930" => "https://s7g10.scene7.com/is/image/mannhummel/W_719.30-filter-with-box?qlt=82&ts=1774293617562&dpr=off",
+  "BOS-F026407006" => "https://images2.exist.ua/media/images/products/2020/11/45__hjP2AGi.jpg",
+  "MAH-LX1780" => "https://i.ebayimg.com/images/g/ZYoAAeSwz6NogiVl/s-l400.jpg",
+  "BOS-1987432397" => "https://th.bing.com/th/id/R.e40ca30d990e0871571addf2d76f2dfd?rik=S4eQyeh9etEFPA&pid=ImgRaw&r=0",
+  "KN-KL2282D" => "https://tse4.mm.bing.net/th/id/OIP.uunXAN2k22D4PWOkQ407MQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "BRE-09A82011" => "https://tse4.mm.bing.net/th/id/OIP.nysSxTY6GWiRiulf6JgRLAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "ATE-240130" => "https://a.allegroimg.com/original/117a26/59584b624c12af0626e44bc42e6d/Tarcza-hamulcowa-ATE-24-0130-0175-1-1szt",
+  "TRW-GDB1550" => "https://tse4.mm.bing.net/th/id/OIP.2dgRIc76dKwGaDObna3MjQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "TEX-2470301" => "https://ireland.apollo.olxcdn.com/v1/files/u1k428jybt2a3-UA/image;s=1887x1381",
+  "ATE-03990166" => "https://tse3.mm.bing.net/th/id/OIP.CJzzT0CBe32ePhLVjEPz-AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "VAR-574012068" => "https://th.bing.com/th/id/OIP.WGthW5F5DmtIw99Dw7DxogHaHa?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "BOS-0092S5A110" => "https://tse4.mm.bing.net/th/id/OIP.cT-En0CWVbvUPdw0KDr31wAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "EXI-EA640" => "https://tse1.mm.bing.net/th/id/OIP.7UJXD0x0ae5aYRAmDa6CpQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "NGK-LKR7DIX" => "https://tse4.mm.bing.net/th/id/OIP.vKJLXOYzaNHBPfVuJPMJDAHaF7?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "BOS-0250403009" => "https://www.motacarte.com/wp-content/uploads/2025/SK0333515-ES20251120-090226-0-1763600591-4042635.jpg%20.webp",
+  "PH-12972XVPS2" => "https://tse4.mm.bing.net/th/id/OIP.pyX4Em32B5eujuZyeC5iOgHaI4?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "OS-64210NL" => "https://tse4.mm.bing.net/th/id/OIP.X0trWd1B5x5of3tLNuiX6gHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "OS-2825DWP" => "https://tse2.mm.bing.net/th/id/OIP.kXqsekOiq0pz0ZqkC5mYjwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "BOS-3397007863" => "https://cdn.comfy.ua/media/catalog/product/cache/5/image/600x/9df78eab33525d08d6e5fb8d27136e95/_/b/_bosch_aerotwin_650475_3_397_007_309_4_.jpg",
+  "VAL-574376" => "https://tse1.mm.bing.net/th/id/OIP.UdRPyIZZvW1_nn_SUpARUQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "70M-A500S" => "https://tse3.mm.bing.net/th/id/OIP.EvNaX6OmB8ZlL_1pMu8g2AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "STG-A6C7-3D" => "https://tse3.mm.bing.net/th/id/OIP.j_DCsJ2wbb2pr7zh_6bmdgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "XM-BHR5884" => "https://tse3.mm.bing.net/th/id/OIP.785Cb34bW-fqfk2pH1_MFgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "BS-SUCX140" => "https://content.rozetka.com.ua/goods/images/big/389646742.jpg",
+  "VAG-G013A8JM1" => "https://cdn1.ozone.ru/s3/multimedia-e/c600/6108956894.jpg",
+}.freeze
+PRODUCT_PHOTOS.each { |sku, url| Product.find_by(sku: sku)&.update!(image: url) }
+
 puts "Відгуки..."
 texts = [
   [5, "Замовляв під Audi A6 C7 — підійшло ідеально, доставка Новою поштою за день."],

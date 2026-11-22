@@ -15,7 +15,8 @@ module ApplicationHelper
   def product_image(product, css = "product-img")
     src = product.image.presence || "default.svg"
     src = "products/#{src}" unless src.start_with?("http://", "https://")
-    image_tag(src, alt: product.name, class: css)
+    image_tag(src, alt: product.name, class: css, loading: "lazy", referrerpolicy: "no-referrer",
+              onerror: "this.onerror=null;this.src='#{asset_path('products/default.svg')}'")
   end
 
   def status_badge(order)
